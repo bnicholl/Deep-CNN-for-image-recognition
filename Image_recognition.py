@@ -106,8 +106,6 @@ class convolution():
                 shapes = shapes.shape[1]
             
             """create first set of weights to be matrix mutlipled by features"""
-            #self.weights = tf.get_variable('weights',dtype = tf.float32,  
-            #initializer = tf.random_normal(shape = [shapes, 12], mean = 0.0, stddev = 0.3))  
             self.weights = tf.get_variable("weights", shape=[shapes, 14],
             initializer=tf.contrib.layers.xavier_initializer())                             
             
@@ -126,8 +124,6 @@ class convolution():
         
         """This does the same exact equation with different weights/updated variable as 
         the previous fully_connected function"""
-        #self.weights2 = tf.get_variable('weights2',dtype = tf.float32,                               
-        #initializer = tf.random_normal(shape = [12, 10], mean = 0.0, stddev = 0.3))
         self.weights2 = tf.get_variable("weights2", shape=[14, 12],
         initializer=tf.contrib.layers.xavier_initializer())  
         self.bias2 = tf.get_variable('bias2',dtype = tf.float32, 
@@ -141,8 +137,6 @@ class convolution():
     def fully_connected3(self):
         """This does the same exact equation with different weights/updated variable as 
         the previous fully_connected function"""
-        #self.weights3 = tf.get_variable('weights3', dtype = tf.float32,
-        #initializer = tf.random_normal(shape = [10, 10], mean = 0.0, stddev = 0.3))
         self.weights3 = tf.get_variable("weights3", shape=[12, 10],
         initializer=tf.contrib.layers.xavier_initializer())  
  
@@ -154,7 +148,6 @@ class convolution():
         
                    
     def initialize_and_train(self):
-        #with tf.variable_scope('softmax_cross_entropy'):
         """this method is specificaly for testing phase. code below this is for training"""
         self.probabilities = tf.nn.softmax(self.hidden_layer3,name = 'test_probabilities')
         
