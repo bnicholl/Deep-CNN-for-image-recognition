@@ -184,7 +184,8 @@ class convolution():
                     index2 += 500
                     
                 elif index2 >= int(self.images.shape[0]):
-                    """if our second index is less than the # of training sets, input propper index in feed_dict and run"""
+                    """if our second index is greater than or equal to # of training sets, 
+                    input propper index in feed_dict and run"""
                     index2 == int(self.images.shape[0])
                     feed_dict = {self.inputs : self.images[index1:index2], self.outputs : self.labels[index1:index2]}
                     session.run(self.train, feed_dict)
