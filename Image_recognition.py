@@ -245,7 +245,7 @@ def restore(x,y):
             
 """if you run this code, you can open up the tensorboard via local host on google chrome"""
 #with tf.Session() as sess1:
-#	writer = tf.summary.FileWriter("/Users/bennicholl/Desktop/output3", sess.graph)
+#	writer = tf.summary.FileWriter("/Users/bennicholl/Desktop/output3", sess1.graph)
 #	writer.close()   
   
     
