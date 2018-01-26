@@ -86,7 +86,7 @@ class convolution():
         self.flatten()      
     
     """flattens our array of pixels into a vector, this puts our data in standard "features
-    form", and enables matrix multiplication linear regression function on our features/weights"""    
+    form", and enables matrix multiplication linear transformation functions on our features/weights"""    
     def flatten(self):
         self.data = tf.contrib.layers.flatten(self.data)
         self.fully_connected()
