@@ -201,6 +201,13 @@ class convolution():
             """save the final results of our weights/filter variables as outputfile"""
             self.saver = tf.train.Saver() 
             self.saver.save(session, 'outputfile')
+            
+            """this below code is for tensorboard, a data visualization tool"""
+            """open local host:6006 on chrome, than type in hashtagged code block below in a terminal"""
+            #python -m tensorboard.main --logdir="/Users/bennicholl/Desktop/output3"
+            with tf.Session() as session:
+                writer = tf.summary.FileWriter("/Users/bennicholl/Desktop/output3", session.graph)
+                writer.close()  
 
 
 # these are just examples of runnning x and y tests through one at a time. you can also 
@@ -242,11 +249,6 @@ def restore(x,y):
         print('errors are:', ses.run(restored_error,feed_dict))
             
 
-            
-"""if you run this code, you can open up the tensorboard via local host on google chrome"""
-#with tf.Session() as sess1:
-#	writer = tf.summary.FileWriter("/Users/bennicholl/Desktop/output3", sess1.graph)
-#	writer.close()   
   
     
     
