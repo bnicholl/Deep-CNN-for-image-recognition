@@ -28,7 +28,7 @@ y_test = mnist.test.labels
 
 np.set_printoptions(threshold=np.nan)
 
-"""the list below is  batchsize, [input spatial shape], input channels"""
+"""the list below is  [batch, height, width, channels]"""
 #images = np.reshape(images,(-1,110,110,1))
 
 """create an instance of the class with two required arguments, image and labels"""
