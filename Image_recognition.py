@@ -5,6 +5,9 @@ Created on Fri Oct 13 16:31:44 2017
 
 @author: bennicholl
 """
+"""IMPORTANT!!!  if you want to run algorithm, you must go down to line 204 and 210 and change the path
+   in order to save the weights and tnesorboard"""
+
 import numpy as np
 import tensorflow as tf
 
@@ -200,7 +203,7 @@ class convolution():
                     print('#', iteration, 'error is:', session.run(self.error, feed_dict))
             """save the final results of our weights/filter variables as outputfile"""
             self.saver = tf.train.Saver() 
-            self.saver.save(session, 'outputfile')
+            self.saver.save(session, "/Users/bennicholl/Desktop/outputfile")
             
             """this below code is for tensorboard, a data visualization tool"""
             """open local host:6006 on chrome, than type in hashtagged code block below in a terminal"""
