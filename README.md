@@ -4,11 +4,11 @@ Neural network that learns to classify images. I tested this algorithm on the mn
 I get an average of 97 % correct images on my test set using the MNIST taining set.
 restore function gives probability of neural network guessing the correct image.
 
-Example output after running restore function on the MNIST training set:
-restore = restore(x_,y_)
-INFO:tensorflow:Restoring parameters from /Users/bennicholl/Desktop/outputfile
-97.0 % chance of correct prediciton
-cross entropy errors are: 0.16949451
+Example output after running restore function on the MNIST training set:                                                        
+restore = restore(x_,y_)                                                                                                          
+INFO:tensorflow:Restoring parameters from /Users/bennicholl/Desktop/outputfile                                                      
+97.0 % chance of correct prediciton                                                                                             
+cross entropy errors are: 0.16949451                                                                                            
 
 
 
