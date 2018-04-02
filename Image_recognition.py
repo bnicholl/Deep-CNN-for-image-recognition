@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 """
 Created on Fri Oct 13 16:31:44 2017
-
 @author: bennicholl
 """
 """IMPORTANT!!!  if you want to run algorithm, you must go down to line 204 and 210 and change the path
@@ -176,7 +175,7 @@ class convolution():
             index1 = 0
             index2 = 500
             """this for loop runs mini-batch gradient descent and prints error every ith iteration"""
-            for i in range(4000): 
+            for i in range(4500): 
                 """if our second index is less than the # of training sets, input propper index in feed_dict and run"""
                 if index2 < int(self.images.shape[0]):                  
                     feed_dict = {self.inputs : self.images[index1:index2], self.outputs : self.labels[index1:index2]} 
@@ -198,7 +197,6 @@ class convolution():
                     index2 = 500 
 
                 if iteration % 100 == 0:  
-                    #print(session.run(self.weights[10]))
                     print(index1,index2)
                     print('#', iteration, 'error is:', session.run(self.error, feed_dict))
             """save the final results of our weights/filter variables as outputfile"""
@@ -215,9 +213,9 @@ class convolution():
 
 # these are just examples of runnning x and y tests through one at a time. you can also 
 # iterate thrugh the entire testset using x_test and y_test as arguments
-x_ = x_test[80:90]
+x_ = x_test[80:96]
 x_ = np.reshape(x_,[-1,28,28,1])
-y_ = y_test[80:90]
+y_ = y_test[80:96]
 y_ = y_.reshape(-1, 10)
 
 
@@ -237,19 +235,27 @@ def restore(x,y):
         feed_dict = {w1 : x, w2 : y}        
         
         """restore self.error and self.probability function and then runs said functions"""
-        restored_probability = graph.get_tensor_by_name('convolutions/hidden_layers/test_probabilities:0')
+        restored_probability = graph.get_tensor_by_name('convolutions/hidden_layers/test_probabilities:0')       
         restored_error = graph.get_tensor_by_name('convolutions/hidden_layers/Mean:0')
         
-        """only run this to look at small populations of my test set, gives you actual probabilites"""
+        """printing val gives the probability of each element in a vector. only print for small batches"""
         val = ses.run(restored_probability,feed_dict)
-        print(ses.run(tf.as_string(val, scientific=None)))        
-        """These give you the probabilities rounded to 0 and 1. (answers rounded)"""
-        #print(ses.run(tf.rint(restored_probability),feed_dict))
+        #print(ses.run(tf.as_string(val, scientific=None)))
+        """this below code calculates the probability that are algorithm predicts the right image"""
+        amount_correct = 0
+        for e,i in enumerate(val):
+            highest_prob = max(i)
+            location_of_highest_prob = np.where(i == highest_prob)
+            location_of_correct_label = np.where(y[e] ==1 )
+            if location_of_highest_prob == location_of_correct_label:
+                amount_correct +=1     
+        probability_of_being_correct = amount_correct/len(y)
+        print(probability_of_being_correct * 100, '% chance of correct prediciton')
         
         """gives you the acutal labels of each corresponding image"""
-        print(y_)
+        #print(y_)
         """gives the cost function average."""
-        print('errors are:', ses.run(restored_error,feed_dict))
+        print('cross entropy errors are:', ses.run(restored_error,feed_dict))
             
 
   
